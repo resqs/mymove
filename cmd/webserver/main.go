@@ -194,7 +194,6 @@ func main() {
 	// are added, but the resulting http.Handlers execute in "normal" order
 	// (i.e., the http.Handler returned by the first Middleware added gets
 	// called first).
-	site.Use(logging.LogRequestMiddleware)
 	site.Use(httpsComplianceMiddleware)
 	site.Use(limitBodySizeMiddleware)
 
@@ -204,6 +203,7 @@ func main() {
 	root := goji.NewMux()
 	root.Use(appDetectionMiddleware)
 	root.Use(tokenMiddleware)
+	root.Use(logging.LogRequestMiddleware)
 	site.Handle(pat.New("/*"), root)
 
 	apiMux := goji.SubMux()

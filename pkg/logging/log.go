@@ -6,6 +6,9 @@ import (
 	"github.com/felixge/httpsnoop"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+
+	"github.com/transcom/mymove/pkg/app"
+	"github.com/transcom/mymove/pkg/auth"
 )
 
 // Config configures a Zap logger based on the environment string and debugLevel
@@ -33,14 +36,18 @@ func Config(env string, debugLogging bool) (*zap.Logger, error) {
 func LogRequestMiddleware(inner http.Handler) http.Handler {
 	mw := func(w http.ResponseWriter, r *http.Request) {
 		var protocol string
+		var userID string
 
 		if r.TLS == nil {
 			protocol = "http"
 		} else {
 			protocol = "https"
 		}
-
 		metrics := httpsnoop.CaptureMetrics(inner, w, r)
+		userUUID, ok := auth.GetUserID(r.Context())
+		if ok {
+			userID = userUUID.String()
+		}
 		zap.L().Info("Request",
 			zap.String("accepted-language", r.Header.Get("accepted-language")),
 			zap.Int64("content-length", r.ContentLength),
@@ -59,6 +66,8 @@ func LogRequestMiddleware(inner http.Handler) http.Handler {
 			zap.String("x-forwarded-for", r.Header.Get("x-forwarded-for")),
 			zap.String("x-forwarded-host", r.Header.Get("x-forwarded-host")),
 			zap.String("x-forwarded-proto", r.Header.Get("x-forwarded-proto")),
+			zap.String("user-id", userID),
+			zap.String("app", app.GetAppFromContext(r)),
 		)
 
 	}
