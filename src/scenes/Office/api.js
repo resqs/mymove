@@ -96,3 +96,22 @@ export async function ApproveBasics(moveId) {
   checkResponse(response, 'failed to approve move due to server error');
   return response.body;
 }
+
+// Get PPM SIT Estimate
+export async function LoadPPMSITEstimate(
+  moveDate,
+  originZip,
+  destinationZip,
+  weightEstimate,
+) {
+  const client = await getClient();
+  const response = await client.apis.ppm.showPPMSitEstimate({
+    planned_move_date: moveDate,
+    origin_zip: originZip,
+    destination_zip: destinationZip,
+    weight_estimate: weightEstimate,
+  });
+  checkResponse(response, 'failed to get SIT estimate due to server error');
+  console.log('response.body: ', response.body);
+  return response.body;
+}

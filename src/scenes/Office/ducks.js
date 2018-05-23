@@ -8,6 +8,7 @@ import {
   UpdateBackupContact,
   LoadPPMs,
   ApproveBasics,
+  LoadPPMSITEstimate,
 } from './api.js';
 
 import { UpdateOrders } from 'scenes/Orders/api.js';
@@ -24,6 +25,7 @@ const loadBackupContactType = 'LOAD_BACKUP_CONTACT';
 const updateBackupContactType = 'UPDATE_BACKUP_CONTACT';
 const loadPPMsType = 'LOAD_PPMS';
 const approveBasicsType = 'APPROVE_BASICS';
+const loadPPMSITEstimateType = 'LOAD_PPM_SIT_ESTIMATE';
 
 // MULTIPLE-RESOURCE ACTION TYPES
 const updateBackupInfoType = 'UPDATE_BACKUP_INFO';
@@ -57,6 +59,10 @@ const UPDATE_BACKUP_CONTACT = ReduxHelpers.generateAsyncActionTypes(
 const LOAD_PPMS = ReduxHelpers.generateAsyncActionTypes(loadPPMsType);
 
 const APPROVE_BASICS = ReduxHelpers.generateAsyncActionTypes(approveBasicsType);
+
+const LOAD_PPM_SIT_ESTIMATE = ReduxHelpers.generateAsyncActionTypes(
+  loadPPMSITEstimateType,
+);
 
 // MULTIPLE-RESOURCE ACTION TYPES
 
@@ -117,6 +123,11 @@ export const loadPPMs = ReduxHelpers.generateAsyncActionCreator(
 export const approveBasics = ReduxHelpers.generateAsyncActionCreator(
   approveBasicsType,
   ApproveBasics,
+);
+
+export const loadPPMSITEstimate = ReduxHelpers.generateAsyncActionCreator(
+  loadPPMSITEstimateType,
+  LoadPPMSITEstimate,
 );
 
 // MULTIPLE-RESOURCE ACTION CREATORS
@@ -225,6 +236,8 @@ const initialState = {
   ppmsHaveLoadSuccess: false,
   loadDependenciesHasError: null,
   loadDependenciesHasSuccess: false,
+  loadPPMSITEstimateHasLoadError: false,
+  loadPPMSITEstimateHasLoadSuccess: false,
 };
 
 export function officeReducer(state = initialState, action) {
@@ -455,7 +468,22 @@ export function officeReducer(state = initialState, action) {
         updateOrdersInfoHasError: true,
         error: action.error.message,
       });
-
+    case LOAD_PPM_SIT_ESTIMATE.start:
+      return Object.assign({}, state, {
+        loadPPMSITEstimateHasLoadError: false,
+        loadPPMSITEstimateHasLoadSuccess: false,
+      });
+    case LOAD_PPM_SIT_ESTIMATE.success:
+      return Object.assign({}, state, {
+        loadPPMSITEstimateHasLoadError: false,
+        loadPPMSITEstimateHasLoadSuccess: true,
+      });
+    case LOAD_PPM_SIT_ESTIMATE.failure:
+      return Object.assign({}, state, {
+        loadPPMSITEstimateHasLoadError: true,
+        loadPPMSITEstimateHasLoadSuccess: false,
+        error: action.error.message,
+      });
     // ALL DEPENDENCIES
     case LOAD_DEPENDENCIES.start:
       return Object.assign({}, state, {
