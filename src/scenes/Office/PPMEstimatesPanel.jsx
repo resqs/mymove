@@ -26,11 +26,9 @@ const EstimatesDisplay = props => {
           fieldName="planned_move_date"
           {...fieldProps}
         />
-        <PanelSwaggerField
-          title="Storage planned"
-          fieldName="has_sit"
-          {...fieldProps}
-        />
+        <PanelField title="Storage planned" fieldName="days_in_storage">
+          {fieldProps.values.has_sit ? 'yes' : 'no'}
+        </PanelField>
         <PanelSwaggerField
           title="Storage days"
           fieldName="days_in_storage"
