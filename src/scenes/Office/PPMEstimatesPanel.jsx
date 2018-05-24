@@ -27,14 +27,18 @@ const EstimatesDisplay = props => {
           {...fieldProps}
         />
         <PanelField title="Storage planned" fieldName="days_in_storage">
-          {fieldProps.values.has_sit ? 'yes' : 'no'}
+          {fieldProps.values.has_sit ? 'Yes' : 'No'}
         </PanelField>
         <PanelSwaggerField
           title="Storage days"
           fieldName="days_in_storage"
           {...fieldProps}
         />
-        <PanelField title="Max. storage cost" value="Max. storage cost" />
+        <PanelField
+          title="Max. storage cost"
+          value="Max. storage cost"
+          className="Todo"
+        />
       </div>
       <div className="editable-panel-column">
         <PanelSwaggerField
