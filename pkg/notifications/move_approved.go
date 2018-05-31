@@ -75,6 +75,7 @@ func (m MoveApproved) emails() ([]emailContent, error) {
 		subject:        "MOVE.MIL: Your move has been approved.",
 		htmlBody:       fmt.Sprintf("%s<br/>%s<br/>%s<br/>%s", introText, nextStepsText, ppmText, closingText),
 		textBody:       fmt.Sprintf("%s\n%s\n%s\n%s", introText, nextStepsText, ppmText, closingText),
+		attachments:    []string{"ppm_info_sheet.pdf"},
 	}
 
 	m.logger.Info("Sent move approval email to service member",

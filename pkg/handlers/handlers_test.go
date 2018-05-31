@@ -24,10 +24,11 @@ import (
 
 type HandlerSuite struct {
 	suite.Suite
-	db           *pop.Connection
-	logger       *zap.Logger
-	filesToClose []*os.File
-	sesService   sesiface.SESAPI
+	db            *pop.Connection
+	logger        *zap.Logger
+	filesToClose  []*os.File
+	sesService    sesiface.SESAPI
+	attachmentDir string
 }
 
 type mockSESClient struct {
@@ -180,10 +181,15 @@ func TestHandlerSuite(t *testing.T) {
 	// Setup mock SES Service
 	mockSVC := mockSESClient{}
 
+	// Locate attachments directory
+	wd, _ := os.Getwd()
+	attachmentDir := path.Join(wd, "..", "..", "public", "attachments")
+
 	hs := &HandlerSuite{
-		db:         db,
-		logger:     logger,
-		sesService: &mockSVC,
+		db:            db,
+		logger:        logger,
+		sesService:    &mockSVC,
+		attachmentDir: attachmentDir,
 	}
 
 	suite.Run(t, hs)

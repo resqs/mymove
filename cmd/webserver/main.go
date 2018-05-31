@@ -166,6 +166,7 @@ func main() {
 	}
 	sesService := ses.New(sesSession)
 	handlerContext.SetSesService(sesService)
+	handlerContext.SetAttachmentDir(path.Join(*build, "attachments"))
 
 	// Serves files out of build folder
 	clientHandler := http.FileServer(http.Dir(*build))

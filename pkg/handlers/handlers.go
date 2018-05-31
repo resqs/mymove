@@ -43,6 +43,7 @@ type HandlerContext struct {
 	planner          route.Planner
 	storage          FileStorer
 	sesService       sesiface.SESAPI
+	attachmentDir    string
 }
 
 // NewHandlerContext returns a new HandlerContext with its required private fields set.
@@ -61,6 +62,11 @@ func (context *HandlerContext) SetFileStorer(storer FileStorer) {
 // SetSesService is a simple setter for AWS SES private field
 func (context *HandlerContext) SetSesService(sesService sesiface.SESAPI) {
 	context.sesService = sesService
+}
+
+// SetAttachmentDir is a simple setter for AWS SES private field
+func (context *HandlerContext) SetAttachmentDir(d string) {
+	context.attachmentDir = d
 }
 
 // SetPlanner is a simple setter for the route.Planner private field

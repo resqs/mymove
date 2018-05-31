@@ -53,6 +53,8 @@ func (suite *HandlerSuite) TestApprovePPMHandler() {
 	// And: a ppm is approved
 	context := NewHandlerContext(suite.db, suite.logger)
 	context.SetSesService(suite.sesService)
+	context.SetAttachmentDir(suite.attachmentDir)
+
 	handler := ApprovePPMHandler(context)
 	response := handler.Handle(params)
 
