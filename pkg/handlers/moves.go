@@ -10,6 +10,7 @@ import (
 	moveop "github.com/transcom/mymove/pkg/gen/internalapi/internaloperations/moves"
 	"github.com/transcom/mymove/pkg/gen/internalmessages"
 	"github.com/transcom/mymove/pkg/models"
+	"github.com/transcom/mymove/pkg/notifications"
 )
 
 func payloadForMoveModel(storage FileStorer, order models.Order, move models.Move) (*internalmessages.MovePayload, error) {
@@ -154,6 +155,16 @@ func (h SubmitMoveHandler) Handle(params moveop.SubmitMoveForApprovalParams) mid
 	verrs, err := models.SaveMoveStatuses(h.db, move)
 	if err != nil || verrs.HasAny() {
 		return responseForVErrors(h.logger, verrs, err)
+	}
+
+	err = notifications.SendNotification(
+		notifications.NewMoveSubmitted(h.db, h.logger, session, moveID),
+		h.sesService,
+	)
+	if err != nil {
+		h.logger.Error("problem sending email to user", zap.Error(err))
+		// TODO how should we handle this error?
+		// return newErrResponse(500)
 	}
 
 	movePayload, err := payloadForMoveModel(h.storage, move.Orders, *move)
