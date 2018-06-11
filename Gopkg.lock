@@ -49,6 +49,7 @@
     "aws/credentials/ec2rolecreds",
     "aws/credentials/endpointcreds",
     "aws/credentials/stscreds",
+    "aws/csm",
     "aws/defaults",
     "aws/ec2metadata",
     "aws/endpoints",
@@ -59,6 +60,8 @@
     "internal/sdkrand",
     "internal/shareddefaults",
     "private/protocol",
+    "private/protocol/eventstream",
+    "private/protocol/eventstream/eventstreamapi",
     "private/protocol/json/jsonutil",
     "private/protocol/jsonrpc",
     "private/protocol/query",
@@ -73,8 +76,8 @@
     "service/ssm/ssmiface",
     "service/sts"
   ]
-  revision = "5f796043d63bfddca929cfbcffce01e5a894aad5"
-  version = "v1.13.52"
+  revision = "c9af76f2478f81c6566d0f7f4d522254ec7c0b52"
+  version = "v1.14.3"
 
 [[projects]]
   branch = "master"
@@ -142,8 +145,8 @@
 [[projects]]
   name = "github.com/go-ini/ini"
   packages = ["."]
-  revision = "6529cf7c58879c08d927016dde4477f18a0634cb"
-  version = "v1.36.0"
+  revision = "06f5f3d67269ccec1fe5fe4134ba6e982984f7f5"
+  version = "v1.37.0"
 
 [[projects]]
   branch = "master"
@@ -221,13 +224,13 @@
   branch = "master"
   name = "github.com/go-openapi/validate"
   packages = ["."]
-  revision = "9286f6d0e5c1ffc7cf2bda1d59291dc3c4f2f828"
+  revision = "b0a3ed684d0fdd3e1eda00433382188ce8aa7169"
 
 [[projects]]
   name = "github.com/go-sql-driver/mysql"
   packages = ["."]
-  revision = "a0583e0143b1624142adab07e0e97fe106d99561"
-  version = "v1.3.0"
+  revision = "d523deb1b23d913de5bdada721a6071e71283618"
+  version = "v1.4.0"
 
 [[projects]]
   branch = "master"
@@ -240,7 +243,7 @@
     "generator",
     "scan"
   ]
-  revision = "4125f30a469148d35d0dc429f6c4596f178c8b2a"
+  revision = "cef0581365efc6cabe9a01e3cef2fe62e282f789"
 
 [[projects]]
   name = "github.com/gobuffalo/envy"
@@ -257,8 +260,8 @@
 [[projects]]
   name = "github.com/gobuffalo/packr"
   packages = ["."]
-  revision = "7f4074995d431987caaa35088199f13c44b24440"
-  version = "v1.11.0"
+  revision = "bd47f2894846e32edcf9aa37290fef76c327883f"
+  version = "v1.11.1"
 
 [[projects]]
   name = "github.com/gobuffalo/pop"
@@ -274,8 +277,8 @@
     "soda/cmd/generate",
     "soda/cmd/schema"
   ]
-  revision = "addd35fa30f151cdee20971b635abf6dc631837c"
-  version = "v4.5.8"
+  revision = "9985012f32f5e36b1a10e9191ee460daac4a9bc7"
+  version = "v4.5.9"
 
 [[projects]]
   name = "github.com/gobuffalo/uuid"
@@ -387,7 +390,7 @@
     ".",
     "oid"
   ]
-  revision = "d34b9ff171c21ad295489235aec8b6626023cd04"
+  revision = "90697d60dd844d5ef6ff15135d0203f65d2f53b8"
 
 [[projects]]
   name = "github.com/magiconair/properties"
@@ -403,7 +406,7 @@
     "jlexer",
     "jwriter"
   ]
-  revision = "8b799c424f57fa123fc63a99d6383bc6e4c02578"
+  revision = "3fdea8d05856a0c8df22ed4bc71b3219245e4485"
 
 [[projects]]
   branch = "master"
@@ -421,8 +424,8 @@
     ".",
     "providers/openidConnect"
   ]
-  revision = "282ed1a1bfe41f8de308e4910398fedb289c55c3"
-  version = "v1.45.6"
+  revision = "aefb600c0c37063c4280d47c42b11984b63cece4"
+  version = "v1.45.7"
 
 [[projects]]
   branch = "master"
@@ -462,8 +465,8 @@
 [[projects]]
   name = "github.com/mattn/go-sqlite3"
   packages = ["."]
-  revision = "6c771bb9887719704b210e87e934f08be014bdb1"
-  version = "v1.6.0"
+  revision = "323a32be5a2421b8c7087225079c6c900ec397cd"
+  version = "v1.7.0"
 
 [[projects]]
   branch = "master"
@@ -496,8 +499,8 @@
 [[projects]]
   name = "github.com/pelletier/go-toml"
   packages = ["."]
-  revision = "acdc4509485b587f5e675510c4f2c63e90ff68a8"
-  version = "v1.1.0"
+  revision = "c01d1270ff3e442a8a57cddc1c92dc1138598194"
+  version = "v1.2.0"
 
 [[projects]]
   name = "github.com/pkg/errors"
@@ -539,8 +542,8 @@
     ".",
     "mem"
   ]
-  revision = "63644898a8da0bc22138abf860edaf5277b6102e"
-  version = "v1.1.0"
+  revision = "787d034dfe70e44075ccc060d346146ef53270ad"
+  version = "v1.1.1"
 
 [[projects]]
   name = "github.com/spf13/cast"
@@ -575,8 +578,8 @@
 [[projects]]
   name = "github.com/stretchr/objx"
   packages = ["."]
-  revision = "facf9a85c22f48d2f52f2380e4efce1768749a89"
-  version = "v0.1"
+  revision = "477a77ecc69700c7cdeb1fa9e129548e1c1c393c"
+  version = "v0.1.1"
 
 [[projects]]
   name = "github.com/stretchr/testify"
@@ -586,8 +589,8 @@
     "require",
     "suite"
   ]
-  revision = "12b6f73e6084dad08a7c6e575284b177ecafbc71"
-  version = "v1.2.1"
+  revision = "f35b8ab0b5a2cef36673838d662e249dd9c94686"
+  version = "v1.2.2"
 
 [[projects]]
   name = "github.com/toqueteos/webbrowser"
@@ -644,7 +647,7 @@
     "bcrypt",
     "blowfish"
   ]
-  revision = "1a580b3eff7814fc9b40602fd35256c63b50f491"
+  revision = "8ac0e0d97ce45cd83d1d7243c060cb8461dda5e9"
 
 [[projects]]
   branch = "master"
@@ -660,7 +663,7 @@
     "context/ctxhttp",
     "idna"
   ]
-  revision = "57065200b4b034a1c8ad54ff77069408c2218ae6"
+  revision = "1e491301e022f8f977054da4c2d852decd59571f"
 
 [[projects]]
   branch = "master"
@@ -669,7 +672,7 @@
     ".",
     "internal"
   ]
-  revision = "cdc340f7c179dbbfa4afd43b7614e8fcadde4269"
+  revision = "1e0a3fa8ba9a5c9eb35c271780101fdaf1b205d7"
 
 [[projects]]
   branch = "master"
@@ -681,7 +684,7 @@
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "7c87d13f8e835d2fb3a70a2912c811ed0c1d241b"
+  revision = "bff228c7b664c5fce602223a05fb708fd8654986"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -718,11 +721,12 @@
     "imports",
     "internal/fastwalk"
   ]
-  revision = "28aef64757f4d432485ab970b094e1af8b301e84"
+  revision = "c65208ee29128450a4a024e3b7710f3a8d14028d"
 
 [[projects]]
   name = "google.golang.org/appengine"
   packages = [
+    "cloudsql",
     "internal",
     "internal/base",
     "internal/datastore",
