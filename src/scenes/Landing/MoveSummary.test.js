@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { shallow } from 'enzyme';
 import MoveSummary from '.';
+import store from 'shared/store';
 
 describe('MoveSummary tests', () => {
   let wrapper, div;
@@ -28,13 +29,23 @@ describe('MoveSummary tests', () => {
       );
     });
     it('there is a div', () => {
+      // const div = document.createElement('div');
+      // ReactDOM.render(
+      //   <Provider store={store}>
+      //   <MoveSummary
+      //     entitlement={entitlementObj}
+      //     profile={serviceMember}
+      //     orders={ordersObj}
+      //     move={moveObj}
+      //     ppm={ppmObj}
+      //     editMove={editMoveFn}
+      //     resumeMove={resumeMoveFn}
+      //   />
+      // </Provider>,
+      //  div,
+      // );
+      console.log(wrapper.debug());
       console.log(wrapper.contains(<div class="whole_box" />));
-      console.log(
-        wrapper
-          .find('h2')
-          .parents()
-          .at(0),
-      );
       expect(wrapper.find('button').length).toEqual(1);
     });
   });
