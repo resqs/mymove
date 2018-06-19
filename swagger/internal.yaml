@@ -2335,6 +2335,35 @@ paths:
           description: move not found
         500:
           description: internal server error
+  /moves/{moveId}/advance_packet:
+    get:
+      summary: Returns Advance Packet document for a move
+      description: Returns Advance Packet document for a move
+      operationId: showAdvancePacket
+      tags:
+        - office
+      parameters:
+        - in: path
+          name: moveId
+          type: string
+          format: uuid
+          required: true
+          description: UUID of the move
+      responses:
+        200:
+          description: the Advance Packet document for a move
+          schema:
+            $ref: '#/definitions/DocumentPayload'
+        400:
+          description: invalid request
+        401:
+          description: request requires user authentication
+        403:
+          description: user is not authorized
+        404:
+          description: move not found
+        500:
+          description: internal server error
   /moves/{moveId}/approve:
     post:
       summary: Approves a move to proceed

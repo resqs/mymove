@@ -29,37 +29,13 @@ const Page = function(props) {
   return <div className="page">{content}</div>;
 };
 
-const GetUploads = function(orders) {
-  let uploads;
-  if (orders && orders.uploaded_orders) {
-    uploads = orders.uploaded_orders.uploads.map(upload => (
-      <Page
-        key={upload.url}
-        url={upload.url}
-        filename={upload.filename}
-        contentType={upload.content_type}
-      />
-    ));
-  } else {
-    uploads = [];
-  }
-  return uploads;
-};
-
-class OrdersInfo extends Component {
+class DocumentViewer extends Component {
   componentDidMount() {
     this.props.loadMoveDependencies(this.props.match.params.moveId);
   }
 
   render() {
-    const orders = this.props.orders;
-    const serviceMember = this.props.serviceMember;
-    const name = compact([
-      serviceMember.last_name,
-      serviceMember.first_name,
-    ]).join(', ');
-
-    let uploads = GetUploads(orders);
+    let uploads = this.props.uploads;
 
     if (
       !this.props.loadDependenciesHasSuccess &&
@@ -94,21 +70,3 @@ class OrdersInfo extends Component {
     );
   }
 }
-
-OrdersInfo.propTypes = {
-  loadMoveDependencies: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-  swaggerError: state.swagger.hasErrored,
-  ordersSchema: get(state, 'swagger.spec.definitions.CreateUpdateOrders', {}),
-  orders: state.office.officeOrders || {},
-  serviceMember: state.office.officeServiceMember || {},
-  loadDependenciesHasSuccess: state.office.loadDependenciesHasSuccess,
-  loadDependenciesHasError: state.office.loadDependenciesHasError,
-});
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ loadMoveDependencies }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(OrdersInfo);
